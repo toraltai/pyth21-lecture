@@ -1,0 +1,4 @@
+git init
+git commit -m "fail"
+git remote
+git push origin master
