@@ -3,3 +3,7 @@ git commit -m "fail"
 git add "file"
 git remote
 git push origin master
+
+git rm --cached "name file"
+git commit -m "file name"
+git push
