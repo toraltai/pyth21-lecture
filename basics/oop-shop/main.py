@@ -1,11 +1,26 @@
-from models import User, Product, Comment
 
-user1 = User("test@gmail.com", "hello", "female")
-user1.register("123456789", "123456789")
-user1.login('123456789')
-print(user1.is_auth)
+from urls import urlpatterns
+from pprint import pprint
 
-product1 = Product('Iphone 10', "12345", "....", 10)
+while True:
+    try:
+        url, arg = input("Введите адрес: ").split("/")
+    except ValueError:
+        print("Enter a valid url")
+        continue
 
-comment1 = Comment(user1, product1, "sick phone")
-print(comment1)
+    found = False
+    for uri, view in urlpatterns:
+        if uri.split("/")[0] == url:
+            found = True
+
+            try:
+                if arg:
+                    pprint(view(arg))
+                else:
+                    pprint(view())
+            except Exception as e:
+                print(e)
+
+    if not found:
+        print("404 Url Not Found")
